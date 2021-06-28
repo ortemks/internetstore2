@@ -1,0 +1,995 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:before, *:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus, :active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+    height: 100;
+    width: 100;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family: inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:400;}
+
+
+
+
+
+
+
+
+
+
+
+.body{
+    background-color: white;
+}
+.headercontainer{
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: lightblue;
+    width: 100vw;
+    height: 6vh;
+    padding-right: 2vw;
+}
+.basketicon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4vw;
+    height: 5.33vh;
+    border-radius: 10px;
+    background-color: lightblue;
+}
+.basketicon>img{
+    max-width: 3vw;
+    max-height: 4vh;
+}
+.basketicon>img:hover{
+    max-height: 4vw;
+    max-height: 5.33vh;
+    transition-duration: 300ms;
+}
+.containerforproducts{
+    top: 9vh;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.productcontainer{
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:white;
+    width: 20vw;
+    height: 41vh;
+    border-top: none;
+}
+.borderundervisible{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18vw;
+    height: 36vh;
+    border: lightblue solid 1px;
+}
+.visibleproduct{
+    width: 15vw;
+    height: 32.5vh;
+}
+.imagecontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+}
+.imagecontainer>img{
+    max-width: 100%;
+    max-height: 66.6%;
+}
+.spaceinproduct{
+    width: 100%;
+    height: 2vh;
+    border-top: 1px solid lightblue;
+}
+.productname{
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    height: 8.5vh;
+    margin: 0vh 5%;
+    overflow: hidden;
+}
+.productname>span{
+    display: inline-block;
+    height: 82%;
+    font-size: 25px;
+    overflow: hidden;
+}
+.productdescription{
+    display: none;
+}
+.productprice{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    height: 7vh;
+    margin: 0vh 5%;
+    border-top: 1px solid lightblue;
+}
+.descriptioninmainproduct{
+    display: inline-block;
+    font-size: 25px;
+}
+.priceinmainproduct{
+    display: inline-block;
+    margin: 0vh 1vw;
+    font-size: 25px;
+    color: red;
+    overflow: hidden;
+}
+.basketbackground{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10000vh;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.basketvisiblecontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 4.5vw;
+    top: 5.5vh;
+    width: 25vw;
+    min-height: 56vh;
+    font-family: 'Courier New', Courier, monospace;
+}
+.basketmenucontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 50vh;
+    overflow: hidden;
+    border-top-left-radius: 20px;
+    background-color:white;
+}
+.basketheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    border-bottom: 1px solid lightblue;
+}
+.titleinbasket{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    margin-left: 1vw;
+}
+.titleinbasket>span{
+    display: inline-block;
+    font-size: 20px;
+}
+.buttonsatbasketheader{
+    display: flex;
+    justify-content: space-between;
+    width: 52%;
+    height: 100%;
+    overflow: hidden;
+}
+.cleanbasketbuttoncontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 77%;
+    height: 100%;
+}
+.cleanbasketbutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: lightblue;
+    font-size: 20px;
+}
+.cleanbasketbutton:hover{
+    width: 152px;
+    height: 30px;
+    transition-duration: 300ms;
+}
+.exitbuttoninbasketcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 5vh;
+}
+.exitinbasket{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+    background-color: white;
+}
+.exitinbasket:hover{
+    width: 24px;
+    height: 24px;
+    transition-duration: 300ms;
+}
+.firstline, .secondline{
+    background-color:darkred;
+    width: 1px;
+    height: 100px;
+}
+.firstline{
+    transform: rotate(45deg);
+}
+.secondline{
+    transform: rotate(-45deg);
+}
+.productinbasketcontainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    min-height: 15vh;
+    border-bottom: 1px lightblue solid;
+}
+.imageinbasketshell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    min-height: 15vh;
+}
+.imageinbasketshell > img{
+    max-width: 10vw;
+    max-height: 14vh;
+}
+.textinbasketcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 60%;
+    height: 100%;
+    padding: 0vh 1vw;
+}
+.nameinbasket{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 5vh;
+    overflow: hidden;
+    border-bottom: 1px solid lightblue;
+    word-break: break-all;
+}
+.nameinbasket>span{
+    display: inline-block;
+    width: 100%;
+    min-height: 3vh;
+    margin: 1vh 0vw;
+    font-size: 20px;
+    overflow: hidden;
+}
+.priceinbasketcontainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    border-bottom: 1px solid lightblue;
+}
+.staticdescription{
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+}
+.priceinbasket{
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 1vw;
+    color: red;
+}
+.productamount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+}
+.productamount>span{
+    display: inline-block;
+    font-size: 20px;
+}
+.amountbasket{
+    width: 40px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.totalamountcontainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 6vh;
+    padding: 2vh 1vw;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: 1px lightblue solid;
+    background-color: white;
+    overflow: hidden;
+}
+.totalamountabout{
+    display: inline-block;
+    word-break: break-all;
+    font-size: 20px;
+}
+.totalamount{
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 1vw;
+    color: red;
+}
+.emptyimagecontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45vh;
+}
+.emptyimagecontainer>img{
+    max-width: 15vw;
+}
+.popupbackground{
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    justify-content: center;
+    z-index: 100;
+    height: 100vh;
+    width: 100%;
+}
+.backgroundblurcolor{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+.popupvisible{
+    position: absolute;
+    top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    min-height: 65vh;
+    border-radius: 30px;
+    background-color: white;
+    z-index: 101;
+}
+.popupcontent{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 25vw;
+    min-height: 59vh;
+}
+.imageinpopupcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 26vh;
+}
+.imageinpopupcontainer>img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.divideinpopup{
+    width: 110%;
+    height: 2.5vh;
+    border-bottom: 1px solid lightgray;
+}
+.fillingblockinpopup{
+    width: 100%;
+    height: 2.5vh;
+}
+.textinpopupcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    min-height: 28vh;
+    font-family: 'Courier New', Courier, monospace;
+}
+.productnameinpopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 6vh;
+    border-bottom: 1px solid lightgray;
+    overflow: hidden;
+}
+.productnameinpopup>span{
+    display: inline-block;
+    font-size: 25px;
+    width: 90%;
+    margin: 1vh 0vw;
+    min-height: 4vh;
+    overflow: hidden;
+    word-break: break-all;
+}
+.productdescriptioninpopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 10vh;
+    border-bottom: 1px solid lightgray;
+}
+.productdescriptioninpopup>span{
+    display: inline-block;
+    width: 90%;
+    min-height: 8vh;
+    margin: 1vh 0vw;
+    font-size: 16px;
+    word-break: break-all;
+}
+.productpriceinpopup{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    padding: 0vh 5%;
+    border-bottom: 1px solid lightgray;
+}
+.staticinpopup{
+    display: inline-block;
+    margin: 0vh 0vw 0vh 1vw;
+    font-size: 20px;
+    color: black;
+}
+.productpriceinpopup>span{
+    display: inline-block;
+    margin-left: 1vw;
+    font-size: 20px;
+    color: red;
+    overflow: hidden;
+}
+.buybuttoncontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7vh;
+}
+.buybuttoncontainer>button{
+    width: 8vw;
+    height: 4vh;
+    border-radius: 24px;
+    font-size: 24px;
+    color: black;
+    background-color: lightblue;
+}
+.buybuttoncontainer>button:hover{
+    width: 9vw;
+    height: 4.5vh;
+    border-radius: 27px;
+    transition-duration: 300ms;
+}
+
+@media (max-width: 1800px) {
+    .productname>span, .descriptioninmainproduct, .priceinmainproduct, .productnameinpopup>span{
+        font-size: 24px;
+    }
+    .titleinbasket>span, .cleanbasketbutton, .nameinbasket>span, .staticdescription, .priceinbasket, .productamount>span, .totalamountabout, .totalamount, .amountbasket, .staticinpopup, .productpriceinpopup>span{
+        font-size: 19px;
+    }
+    .productdescriptioninpopup>span{
+        font-size: 15px;
+    }
+    .cleanbasketbutton{
+        width: 114px;
+        height: 22px;
+    }
+    .cleanbasketbutton:hover{
+        width: 137px;
+        height: 26px;
+    }
+    .exitinbasket{
+        width: 17px;
+        height: 17px;
+    }
+    .exitinbasket:hover{
+        width: 22px;
+        height: 22px;
+    }
+    .amountbasket{
+        width: 38px;
+        height: 28px;
+    }
+    .buybuttoncontainer>button{
+        width: 8vw;
+        height: 4vh;
+        border-radius: 24px;
+        font-size: 24px;
+        color: black;
+        background-color: lightblue;
+    }
+    .buybuttoncontainer>button:hover{
+        width: 9vw;
+        height: 4.5vh;
+        border-radius: 27px;
+        transition-duration: 300ms;
+    }
+}
+@media (max-width: 1600px) {
+    .productname>span, .descriptioninmainproduct, .priceinmainproduct, .productnameinpopup>span{
+        font-size: 22px;
+    }
+    .titleinbasket>span, .cleanbasketbutton, .nameinbasket>span, .staticdescription, .priceinbasket, .productamount>span, .totalamountabout, .totalamount, .amountbasket, .staticinpopup, .productpriceinpopup>span{
+        font-size: 18px;
+    }
+    .productdescriptioninpopup>span{
+        font-size: 14px;
+    }
+    .cleanbasketbutton{
+        width: 109px;
+        height: 21px;
+    }
+    .cleanbasketbutton:hover{
+        width: 131px;
+        height: 25px;
+    }
+    .exitinbasket{
+        width: 16px;
+        height: 16px;
+    }
+    .exitinbasket:hover{
+        width: 21px;
+        height: 21px;
+    }
+    .amountbasket{
+        width: 36px;
+        height: 27px;
+    }
+    .buybuttoncontainer>button{
+        width: 9vw;
+        height: 4vh;
+        border-radius: 24px;
+        font-size: 24px;
+        color: black;
+        background-color: lightblue;
+    }
+    .buybuttoncontainer>button:hover{
+        width: 10.125vw;
+        height: 4.5vh;
+        border-radius: 26px;
+        transition-duration: 300ms;
+    }
+}
+@media (max-width: 1400px) {
+    .productname>span, .descriptioninmainproduct, .priceinmainproduct, .productpriceinpopup>span{
+        font-size: 20px;
+    }
+    .titleinbasket>span, .cleanbasketbutton, .nameinbasket>span, .staticdescription, .priceinbasket, .productamount>span, .totalamountabout, .totalamount, .amountbasket, .staticinpopup, .productpriceinpopup>span{
+        font-size: 18px;
+    }
+    .productdescriptioninpopup>span{
+        font-size: 14px;
+    }
+    .productcontainer{
+        width: 25vw;
+    }
+    .borderundervisible{
+        width: 23vw;
+    }
+    .visibleproduct{
+        width: 20vw;
+    }
+    .basketvisiblecontainer{
+        width: 30vw;
+    }
+    .cleanbasketbutton{
+        width: 104px;
+        height: 30px;
+    }
+    .cleanbasketbutton:hover{
+        width: 125px;
+        height: 36px;
+    }
+    .exitinbasket{
+        width: 18px;
+        height: 18px;
+    }
+    .exitinbasket:hover{
+        width: 20px;
+        height: 20px;
+    }
+    .amountbasket{
+        width: 32px;
+        height: 24px;
+    }
+    .popupvisible{
+        width: 40vw;
+        min-height: 78vh;
+    }
+    .popupcontent{
+        width: 34vw;
+        min-height: 72vh;
+    }
+    .imageinpopupcontainer{
+        height: 31vh;
+    }
+    .textinpopupcontainer{
+        min-height: 36vh;
+    }
+    .productnameinpopup{
+        min-height: 8vh;
+    }
+    .productnameinpopup>span{
+        min-height: 7vh;
+    }
+    .productdescriptioninpopup{
+        min-height: 14vh;
+    }
+    .productpriceinpopup{
+        height: 7vh;
+    }
+    .buybuttoncontainer>button{
+        width: 10vw;
+        height: 4vh;
+        border-radius: 24px;
+        font-size: 24px;
+        color: black;
+        background-color: lightblue;
+    }
+    .buybuttoncontainer>button:hover{
+        width: 11.25vw;
+        height: 4.5vh;
+        border-radius: 25px;
+        transition-duration: 300ms;
+    }
+}
+@media (max-width: 1100px) {
+    .productname>span, .descriptioninmainproduct, .priceinmainproduct, .productpriceinpopup>span{
+        font-size: 20px;
+    }
+    .titleinbasket>span, .cleanbasketbutton, .nameinbasket>span, .staticdescription, .priceinbasket, .productamount>span, .totalamountabout, .totalamount, .amountbasket, .staticinpopup, .productpriceinpopup>span{
+        font-size: 18px;
+    }
+    .productcontainer{
+        width: 33vw;
+        height: 47vh;
+    }
+    .borderundervisible{
+        width: 29vw;
+        height: 42vh;
+    }
+    .visibleproduct{
+        width: 24vw;
+        height: 37vh;
+    }
+    .imagecontainer{
+        height: 18vh;
+    }
+    .spaceinproduct{
+        height: 3vh;
+    }
+    .productname{
+        height: 10.5vh;
+    }
+    .productdescriptioninpopup>span{
+        font-size: 16px;
+    }
+    .basketvisiblecontainer{
+        width: 50vw;
+    }
+    .basketheader{
+        height: 7vh;
+    }
+    .cleanbasketbutton{
+        width: 104px;
+        height: 25px;
+    }
+    .cleanbasketbutton:hover{
+        width: 125px;
+        height: 30px;
+    }
+    .exitinbasket{
+        width: 18px;
+        height: 18px;
+    }
+    .exitinbasket:hover{
+        width: 20px;
+        height: 20px;
+    }
+    .amountbasket{
+        width: 32px;
+        height: 24px;
+    }
+    .popupvisible{
+        width: 50vw;
+        min-height: 58vh;
+    }
+    .popupcontent{
+        width: 40vw;
+        min-height: 54vh;
+    }
+    .imageinpopupcontainer{
+        height: 25vh;
+    }
+    .divideinpopup, .fillingblockinpopup{
+        height: 1.5vh;
+    }
+    .textinpopupcontainer{
+        min-height: 26vh;
+    }
+    .productnameinpopup{
+        min-height: 5vh;
+    }
+    .productnameinpopup>span{
+        width: 53vw;
+        min-height: 3vh;
+    }
+    .productdescriptioninpopup{
+        min-height: 8vh;
+    }
+    .productdescriptioninpopup>span{
+        width: 53vw;
+        min-height: 6vh;
+    }
+    .productpriceinpopup>span{
+        margin-left: 2vw;
+    }
+    .productpriceinpopup{
+        height: 4vh;
+    }
+    .staticinpopup{
+        margin: 0vh 0vw 0vh 2vw;
+    }
+    .buybuttoncontainer{
+        height: 9vh;
+    }
+    .buybuttoncontainer>button{
+        width: 20vw;
+        height: 4vh;
+        border-radius: 24px;
+    }
+    .buybuttoncontainer>button:hover{
+        width: 22.5vw;
+        height: 4.5vh;
+        border-radius: 27px;
+    }
+    .basketicon{
+        width: 5vw;
+        height: 5vh;
+    }
+    .basketicon>img{
+        max-width: 4vw;
+        max-height: 4vh;
+    }
+    .basketicon>img:hover{
+        max-width: 5vw;
+        max-height: 5vh;
+    }
+    .basketvisiblecontainer{
+        right: 6vw;
+        top: 6vh;
+    }
+    .titleinbasket, .totalamountabout, .totalamount{
+        margin-left: 2vw;
+    }
+    .totalamountcontainer{
+        height: 7vh;
+    }
+}
+@media (max-width:1100px) and (orientation: landscape){
+    .popupvisible{
+        min-height: 65vh;
+        width: 45vw;
+    }
+    .popupcontent{
+        min-height: 59vh;
+        width: 37vw;
+    }
+    .imageinpopupcontainer{
+        height: 26vh;
+    }
+    .divideinpopup{
+        height: 2.5vh;
+        width: 105%;
+    }
+    .fillingblockinpopup{
+        height: 2.5vh;
+    }
+    .textinpopupcontainer{
+        min-height: 28vh;
+    }
+    .productnameinpopup{
+        min-height: 6vh;
+    }
+    .productnameinpopup>span{
+        min-height: 4vh;
+    }
+    .productdescriptioninpopup{
+        min-height: 8vh;
+    }
+    .productdescriptioninpopup>span{
+        min-height: 8vh;
+    }
+    .productpriceinpopup{
+        height: 5vh;
+    }
+    .staticinpopup{
+        margin: 0vh 0vw 0vh 1vw;
+    }
+    .buybuttoncontainer{
+        height: 9vh;
+    }
+    .buybuttoncontainer>button{
+        width: 16vw;
+        height: 5vh;
+        border-radius: 24px;
+    }
+    .buybuttoncontainer>button:hover{
+        width: 18vw;
+        height: 5.625vh;
+        border-radius: 27px;
+    }
+    .titleinbasket, .totalamountabout, .totalamount{
+        margin-left: 1vw;
+    }
+}
+@media (max-width:900px) {
+    .productcontainer{
+        width: 50vw;
+    }
+    .borderundervisible{
+        width: 45vw;
+    }
+    .visibleproduct{
+        width: 38vw;
+    }
+    .basketheader{
+        height: 5vh;
+    }
+    .totalamountcontainer{
+        height: 6vh;
+    }
+}
+@media (max-width: 500px) {
+    .productcontainer{
+        width: 100vw;
+        height: 66vh;
+    }
+    .basketvisiblecontainer{
+        width: 70vw;
+        right: 11vw;
+        top: 7vh;
+    }
+    .borderundervisible{
+        width: 80vw;
+        height: 61vh;
+    }
+    .visibleproduct{
+        width: 70vw;
+        height: 56vh;
+    }
+    .imagecontainer{
+        height: 27vh;
+    }
+    .spaceinproduct{
+        height: 4vh;
+    }
+    .productname{
+        height: 17vh;
+    }
+    .productprice{
+        height: 8vh;
+    }
+    header{
+        height: 8vh;
+    }
+    .basketicon{
+        width: 12vw;
+        height: 8vh;
+    }
+    .basketicon>img{
+        max-width: 9vw;
+        max-height: 12vh;
+    }
+    .basketicon>img:hover{
+        max-width: 9vw;
+        max-height: 12vh;
+    }
+    .popupvisible{
+        width: 85vw;
+        min-height: 62vh;
+    }
+    .popupcontent{
+        width: 65vw;
+    }
+    .buybuttoncontainer>button{
+        width: 35vw;
+    }
+    .productpriceinpopup>span{
+        margin-left: 3vw;
+    }
+    .basketheader{
+        height: 8.5vh;
+    }
+    .totalamountcontainer{
+        height: 7vh;
+    }
+    .titleinbasket{
+        margin-left: 3vw;
+    }
+    .totalamountabout{
+        margin-left: 3vw;
+    }
+    .totalamount{
+        margin-left: 3vw;
+    }
+}

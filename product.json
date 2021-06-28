@@ -1,0 +1,38 @@
+[
+    {
+        "image":"images/boot.png",
+        "name":"ботинок",
+        "price":"350",
+        "description":"да, он один"
+    },
+    {
+        "image":"images/display.png",
+        "name":"монитор",
+        "price":"12000",
+        "description":"этот монитор точно обеспечит вас полным спектром лгбт гаммы"
+    },
+    {
+        "image":"images/fortynine.png",
+        "name":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero voluptate atque nemo quo, magnam quam ",
+        "price":"57",
+        "description":"8 гривен за хостинг"
+    },
+    {
+        "image":"images/nightstand.png",
+        "name":"тумбочка сапфировая",
+        "price":"530835",
+        "description":"очень редкая и очень дорогая"
+    },
+    {
+        "image":"images/obama.png",
+        "name":"Барак Александрович",
+        "price":"2",
+        "description":"сейчас не 18 век, но все же..."
+    },
+    {
+        "image":"images/pan.png",
+        "name":"кастрюля",
+        "price":"990",
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero voluptate atque nemo quo, magnam quam eligendi sit necessitatibus possimus saepe, amet illo, non cumque nam adipisci eius! Illo, recusandae ea."
+    }
+]

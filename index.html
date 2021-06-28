@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles1.css">
+    <title>internetstore</title>
+</head>
+<body>
+    <div class="headercontainer">
+        <header>
+            <button class="basketicon">
+                <img src="images/basket.png">
+            </button>
+        </header>
+    </div>
+
+    <div class="containerforproducts"></div>
+
+    <div class="productinbasketcontainer" style="display: none;">
+        <div class="imageinbasketshell">
+            <img src="">
+        </div>
+        <div class="textinbasketcontainer">
+            <div class="nameinbasket">
+               <span></span>
+            </div>
+            <div class="priceinbasketcontainer">
+                <span class="staticdescription">цена:</span>
+                <span class="priceinbasket"></span>
+            </div>
+            <div class="productamount">
+                <span>количество:</span>
+                <input value="0" class="amountbasket" type="number">
+            </div>
+        </div>
+    </div>
+    
+    <div class="productcontainer" style="display: none;">
+        <div class="borderundervisible">
+            <div class="visibleproduct">
+                <div class="imagecontainer">
+                    <img src="">
+                </div>
+                <div class="spaceinproduct"></div>
+                <div class="productname">
+                    <span></span>
+                </div>
+                <div class="productdescription"></div>
+                <div class="productprice">
+                    <span class="descriptioninmainproduct">цена:</span>
+                    <span class="priceinmainproduct"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="basketbackground" style="display: none;">
+        <div class="basketvisiblecontainer">
+            <div class="basketmenucontainer">
+                <div class="basketheader">
+                    <div class="titleinbasket">
+                        <span>Корзина</span>
+                    </div>
+                    <div class="buttonsatbasketheader">
+                        <div class="cleanbasketbuttoncontainer">
+                            <button class="cleanbasketbutton">Очистить</button>
+                        </div>
+                        <div class="exitbuttoninbasketcontainer">
+                            <button class="exitinbasket">
+                                <div class="firstline"></div>
+                                <div class="secondline"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="emptyimagecontainer" style="display: none;">
+                    <img src="images/emptybasket.png">
+                </div>
+            </div>
+            <div class="totalamountcontainer">
+                <span class="totalamountabout">Общая стоимость:</span>
+                <span class="totalamount"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="popupbackground">
+        <div class="backgroundblurcolor"></div>
+        <div class="popupvisible">
+            <div class="popupcontent">
+                <div class="imageinpopupcontainer">
+                    <img src="">
+                </div>
+                <div class="divideinpopup"></div>
+                <div class="fillingblockinpopup"></div>
+                <div class="textinpopupcontainer">
+                    <div class="productnameinpopup">
+                        <span></span>
+                    </div>
+                    <div class="productdescriptioninpopup">
+                        <span></span>
+                    </div>
+                    <div class="productpriceinpopup">
+                        <div class="staticinpopup">Цена:</div>
+                        <span></span>
+                    </div>
+                    <div class="buybuttoncontainer">
+                        <button>Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index1.js"></script>
+</body>
+</html>
