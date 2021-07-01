@@ -1,4 +1,3 @@
-document.addEventListener('click', (e) => {console.log(e.target)})
 class Store{
     async addAllProducts(){
         let response = await fetch('https://raw.githubusercontent.com/ortemks/internetstore2/main/product.json');
@@ -11,10 +10,10 @@ class Store{
     }
     basket = new Basket();
     addAllAboutBasket(){
-        this.basket.basketIcon();
-        this.basket.basketExit();
-        this.basket.cleanBasket();
         this.basket.setBasketArray();
+        this.basket.basketIcon();
+        this.basket.basketExitButton();
+        this.basket.cleanBasketButton();
     }
     hidePopup(){
         document.querySelector('.popupbackground').style.display = 'none';
@@ -57,24 +56,38 @@ class Product{
 class Basket{
     basket = document.querySelector('.basketbackground');
     basketIcon(){
-        document.querySelector('.basketicon').addEventListener('click', () => {
-            document.querySelector('.basketbackground').style.display = '';
-            this.basketArray.forEach((element) => {
-                let productinbasketclass = new ProductInBasket(element);
-                let productinbasket = productinbasketclass.createProduct();
-                productinbasket.id = element.id;
-                document.querySelector('.basketheader').after(productinbasket);
-            })
-            this.basket.querySelector('.totalamount').innerHTML = this.getPriceAmount();
-            this.basketEmptyImage();
+        document.querySelector('.basketicon').addEventListener('click', () => {this.showBasket()})
+    }
+    showBasket(){
+        document.querySelector('.basketbackground').style.display = '';
+        this.basketArray.forEach((element) => {
+            let productinbasketclass = new ProductInBasket(element);
+            let productinbasket = productinbasketclass.createProduct();
+            productinbasket.id = element.id;
+            document.querySelector('.basketheader').after(productinbasket);
         })
+        this.basket.querySelector('.totalamount').innerHTML = this.getPriceAmount();
+        this.basketEmptyImage();
+    }
+    basketExitButton(){
+        document.querySelector('.exitinbasket').addEventListener('click', () => this.basketExit())
     }
     basketExit(){
-        document.querySelector('.exitinbasket').addEventListener('click', () => {
-            document.querySelector('.basketbackground').style.display = 'none';
-            document.querySelector('.basketbackground').querySelectorAll('.productinbasketcontainer').forEach((element) => element.remove());
+        document.querySelector('.basketbackground').style.display = 'none';
+        document.querySelector('.basketbackground').querySelectorAll('.productinbasketcontainer').forEach((element) => element.remove());
+        this.setBasket();
+    }
+    cleanBasketButton(){
+        this.basket.querySelector('.cleanbasketbutton').addEventListener('click', () => {this.cleanBasket()})
+    }
+    cleanBasket(){
+            this.basket.querySelectorAll('.productinbasketcontainer').forEach((element) => {
+                element.remove();
+            })
+            this.basketArray.length = 0;
+            this.basket.querySelector('.totalamount').innerHTML = 0;
+            this.basketEmptyImage();
             this.setBasket();
-        })
     }
     getPriceAmount(){
         let amount = 0;
@@ -126,17 +139,6 @@ class Basket{
             document.querySelector('.emptyimagecontainer').style.display = 'none'
         }
     }
-    cleanBasket(){
-        this.basket.querySelector('.cleanbasketbutton').addEventListener('click', () => {
-            this.basket.querySelectorAll('.productinbasketcontainer').forEach((element) => {
-                element.remove();
-            })
-            this.basketArray.length = 0;
-            this.basket.querySelector('.totalamount').innerHTML = 0;
-            this.basketEmptyImage();
-            this.setBasket();
-        })
-    }
 }
 
 class ProductInBasket{
@@ -153,7 +155,22 @@ class ProductInBasket{
         this.productinbasket.querySelector('.nameinbasket > span').innerHTML = this.name;
         this.productinbasket.querySelector('.priceinbasket').innerHTML = this.price;
         this.productinbasket.querySelector('.amountbasket').value = this.amount;
-        this.productinbasket.querySelector('.amountbasket').addEventListener('change', (event) => {
+        this.productinbasket.querySelector('.amountbasket').addEventListener('change', (event) => this.amountChange())
+        return this.productinbasket;
+    }
+    amountChange(){
+        if (event.target.value == ''){
+            event.target.value = 1;
+            store.basket.basketArray.forEach((element) => {
+                if (element.id == event.target.closest('.productinbasketcontainer').getAttribute('id')){
+                    document.querySelector('.totalamount').innerHTML = +document.querySelector('.totalamount').innerHTML - element.price;
+                    element.price /= element.amount;
+                    element.amount = 1;
+                    event.target.closest('.productinbasketcontainer').querySelector('.priceinbasket').innerHTML = element.price;
+                    document.querySelector('.totalamount').innerHTML = +document.querySelector('.totalamount').innerHTML + element.price;
+                } else {}
+            })
+        } else {
             store.basket.basketArray.forEach((element) => {
                 if (event.target.closest('.productinbasketcontainer').getAttribute('id') == element.id) {
                     document.querySelector('.totalamount').innerHTML = +document.querySelector('.totalamount').innerHTML - element.price;
@@ -164,9 +181,8 @@ class ProductInBasket{
                     document.querySelector('.totalamount').innerHTML = +document.querySelector('.totalamount').innerHTML + element.price;
                 }
             })
-            localStorage.setItem('basketarray', JSON.stringify(store.basket.basketArray));
-        })
-        return this.productinbasket;
+        }
+        localStorage.setItem('basketarray', JSON.stringify(store.basket.basketArray));
     }
 }
 
