@@ -1,46 +1,8 @@
-let productsInformation = JSON.parse(`
-[
-    {
-        "image":"images/boot.png",
-        "name":"ботинок",
-        "price":"350",
-        "description":"да, он один"
-    },
-    {
-        "image":"images/display.png",
-        "name":"монитор",
-        "price":"12000",
-        "description":"этот монитор точно обеспечит вас полным спектром лгбт гаммы"
-    },
-    {
-        "image":"images/fortynine.png",
-        "name":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero voluptate atque nemo quo, magnam quam ",
-        "price":"57",
-        "description":"8 гривен за хостинг"
-    },
-    {
-        "image":"images/nightstand.png",
-        "name":"тумбочка сапфировая",
-        "price":"530835",
-        "description":"очень редкая и очень дорогая"
-    },
-    {
-        "image":"images/obama.png",
-        "name":"Барак Александрович",
-        "price":"2",
-        "description":"сейчас не 18 век, но все же..."
-    },
-    {
-        "image":"images/pan.png",
-        "name":"кастрюля",
-        "price":"990",
-        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero voluptate atque nemo quo, magnam quam eligendi sit necessitatibus possimus saepe, amet illo, non cumque nam adipisci eius! Illo, recusandae ea."
-    }
-]
-    `);
 document.addEventListener('click', (e) => {console.log(e.target)})
 class Store{
-    addAllProducts(){
+    async addAllProducts(){
+        let response = await fetch('https://raw.githubusercontent.com/ortemks/internetstore2/main/product.json');
+        let productsInformation = await response.json();
         productsInformation.forEach(function(productinformation, number){
             let product = new Product(productinformation);
             product.id = number + 1;
@@ -111,6 +73,7 @@ class Basket{
         document.querySelector('.exitinbasket').addEventListener('click', () => {
             document.querySelector('.basketbackground').style.display = 'none';
             document.querySelector('.basketbackground').querySelectorAll('.productinbasketcontainer').forEach((element) => element.remove());
+            this.setBasket();
         })
     }
     getPriceAmount(){
@@ -122,13 +85,14 @@ class Basket{
     }
     basketArray = [];
     setBasketArray(){
-        if (localStorage.getItem('basketdata') == null) {
-            localStorage.setItem('basketdata', JSON.stringify(this.basketArray))
+        if (localStorage.getItem('basketarray') == null) {
+            localStorage.setItem('basketarray', JSON.stringify(this.basketArray))
         } else {
-            console.log(localStorage.getItem('basketdata'))
-            console.log(localStorage.getItem('basketdata'));
-            this.basketArray = JSON.parse(localStorage.getItem('basketdata'));
+            this.basketArray = JSON.parse(localStorage.getItem('basketarray'));
         }
+    }
+    setBasket(){
+        localStorage.setItem('basketarray', JSON.stringify(this.basketArray));
     }
     addProductToBasket(){
             let options = {
@@ -155,9 +119,6 @@ class Basket{
             }
             this.setBasket();
     }
-    setBasket(){
-        localStorage.setItem('basketdata', JSON.stringify(this.basketArray));
-    }
     basketEmptyImage(){
         if (this.basket.querySelector('.productinbasketcontainer') === null) {
             document.querySelector('.emptyimagecontainer').style.display = 'flex'
@@ -173,8 +134,8 @@ class Basket{
             this.basketArray.length = 0;
             this.basket.querySelector('.totalamount').innerHTML = 0;
             this.basketEmptyImage();
+            this.setBasket();
         })
-        this.setBasket();
     }
 }
 
@@ -203,7 +164,7 @@ class ProductInBasket{
                     document.querySelector('.totalamount').innerHTML = +document.querySelector('.totalamount').innerHTML + element.price;
                 }
             })
-            localStorage.setItem('basket', store.basket.setBasket());
+            localStorage.setItem('basketarray', JSON.stringify(store.basket.basketArray));
         })
         return this.productinbasket;
     }
